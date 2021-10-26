@@ -34,6 +34,4 @@ for t in l:
 
 shutil.make_archive(ime_zipa, 'zip', 'AT')
 
-fajlovi = os.listdir('AT')
-
 shutil.rmtree('AT')
