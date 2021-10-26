@@ -1,10 +1,18 @@
 import pprint
 import re
+import os
+import shutil
+
+try:
+    os.mkdir('AT')
+except:
+    print('AT vec postoji')
 
 full = ""
+ime_zipa = ''
 
 with open('at.txt', 'r') as file:
-    next(file)
+    ime_zipa = file.readline().rstrip()
     next(file)
     next(file)
     full = file.read()
@@ -17,9 +25,15 @@ for t in l:
     oboje = re.compile("R:\n").split(t)
     test = oboje[0]
     rez = oboje[1]
-    with open(str(i) + '.txt', 'w') as file:
+    with open(os.path.join('AT', str(i) + '.txt'), 'w') as file:
         file.write(test)
-    with open(str(i) + '_r.txt', 'w') as file:
+    with open(os.path.join('AT', str(i) + '_r.txt'), 'w') as file:
         file.write(rez)
 
     i = i+1
+
+shutil.make_archive(ime_zipa, 'zip', 'AT')
+
+fajlovi = os.listdir('AT')
+
+shutil.rmtree('AT')
